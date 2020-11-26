@@ -19,11 +19,10 @@ class ExpenseCreate extends Component
     {
         $this->validate();
 
-        Expense::create([
+        auth()->user()->expenses()->create([
             'description' => $this->description,
             'amount' => $this->amount,
-            'type' => $this->type,
-            'user_id' => 1
+            'type' => $this->type
         ]);
 
         session()->flash('message', 'Registro criado com sucesso!');

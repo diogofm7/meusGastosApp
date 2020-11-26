@@ -8,8 +8,9 @@ use Livewire\Component;
 class ExpenseList extends Component
 {
 
-    public function remove(Expense $expense)
+    public function remove($expense)
     {
+        $expense = auth()->user()->expenses()->find($expense);
         $expense->delete();
 
         session()->flash('message', 'Registro removido com sucesso!');
@@ -17,7 +18,7 @@ class ExpenseList extends Component
 
     public function render()
     {
-        $expenses = Expense::paginate(10);
+        $expenses = auth()->user()->expenses()->orderBy('created_at', 'DESC')->paginate(10);
 
         return view('livewire.expense.expense-list', [
             'expenses' => $expenses
