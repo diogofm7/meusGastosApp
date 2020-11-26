@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Expenses extends Model
+class Expense extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'description', 'type', 'amount'
+        'description', 'type', 'amount', 'user_id'
     ];
 
     public function user()
