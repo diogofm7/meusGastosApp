@@ -3,9 +3,7 @@
         Criar Registro
     </x-slot>
 
-    @if (session()->has('message'))
-        <h3 class="w-56 bg-green-300 rounded pb-4">{{ session('message') }}</h3>
-    @endif
+    @include('includes.message')
 
     <form action="" wire:submit.prevent="createExpense">
         <p>
