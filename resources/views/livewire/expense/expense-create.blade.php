@@ -10,7 +10,7 @@
         <div class="flex flex-wrap -mx-3 mb-6">
 
             <p class="w-full px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="description">Descrição Registro</label>
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="description">Descrição Registro</label>
                 <input type="text" id="description" name="description" wire:model="description"
                        class="block appearance-none w-full bg-gray-200 border @error('description') border-red-500 @else border-gray-200 @enderror  text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
 
@@ -20,8 +20,8 @@
             </p>
 
 
-            <p class="w-full px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="amount">Valor do Registro</label>
+            <p class="w-full px-3 mb-6 md:mb-0 md:mt-3">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="amount">Valor do Registro</label>
                 <input type="text" id="amount" name="amount" wire:model="amount"
                        class="block appearance-none w-full bg-gray-200 border @error('amount') border-red-500 @else border-gray-200 @enderror  text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
 
@@ -32,8 +32,8 @@
             </p>
 
 
-            <p class="w-full px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="type">Tipo do Registro</label>
+            <p class="w-full px-3 mb-6 md:mb-0 md:mt-3">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="type">Tipo do Registro</label>
                 <select name="type" id="type" wire:model="type" class="block appearance-none w-full bg-gray-200 border @error('type') border-red-500 @else border-gray-200 @enderror  text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                     <option value="">Selecione o tipo do registro: Entrada ou Saída...</option>
                     <option value="1">Entrada</option>
@@ -45,8 +45,8 @@
             @enderror
             </p>
 
-            <p class="w-full px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="photo">Comprovante</label>
+            <p class="w-full px-3 mb-6 md:mb-0 md:mt-3">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="photo">Comprovante</label>
                 <input type="file" id="photo" name="photo" wire:model="photo"
                        class="block appearance-none w-full bg-gray-200 border @error('photo') border-red-500 @else border-gray-200 @enderror  text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
 
@@ -55,6 +55,16 @@
             @endif
 
             @error('photo')
+            <h5 class="pl-3 text-red-500 text-xs italic">{{$message}}</h5>
+            @enderror
+            </p>
+
+            <p class="w-full px-3 mb-6 md:mb-0 md:mt-3">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="expenseDate">Data do Comprovante</label>
+                <input type="datetime-local" id="expenseDate" name="expenseDate" wire:model="expenseDate"
+                       class="block appearance-none w-full bg-gray-200 border @error('expenseDate') border-red-500 @else border-gray-200 @enderror  text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+
+            @error('expenseDate')
             <h5 class="pl-3 text-red-500 text-xs italic">{{$message}}</h5>
             @enderror
             </p>

@@ -10,13 +10,14 @@ class ExpenseCreate extends Component
 {
     use WithFileUploads;
 
-    public $description, $amount, $type, $photo;
+    public $description, $amount, $type, $photo, $expenseDate;
 
     protected $rules = [
         'description' => 'required',
         'amount' => 'required',
         'type' => 'required',
-        'photo' => 'image|nullable'
+        'photo' => 'image|nullable',
+        'expenseDate' => 'date|nullable'
     ];
 
     public function createExpense()
@@ -31,7 +32,8 @@ class ExpenseCreate extends Component
             'description' => $this->description,
             'amount' => $this->amount,
             'type' => $this->type,
-            'photo' => $this->photo
+            'photo' => $this->photo,
+            'expense_date' => $this->expenseDate
         ]);
 
         session()->flash('message', 'Registro criado com sucesso!');

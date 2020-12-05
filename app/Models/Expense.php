@@ -11,7 +11,7 @@ class Expense extends Model
 
     protected $fillable = [
         'description', 'type', 'amount', 'user_id',
-        'photo', 'expense_data'
+        'photo', 'expense_date'
     ];
 
     protected $dates = [
@@ -22,6 +22,11 @@ class Expense extends Model
     {
         return $this->attributes['amount'] = $amount * 100;
     }
+
+    /*public function setExpenseDateAttribute($value)
+    {
+        return $this->attributes['expense_date'] = (\DateTime::createFromFormat('d/m/Y H:i:s', $value))->format('Y-m-d H:i:s');
+    }*/
 
     public function getAmountAttribute()
     {
