@@ -24,14 +24,14 @@ class ExpenseCreate extends Component
         $this->validate();
 
         if ($this->photo) {
-            $photo = $this->photo->store('expenses-photos', 'public');
+            $this->photo = $this->photo->store('expenses-photos', 'public');
         }
 
         auth()->user()->expenses()->create([
             'description' => $this->description,
             'amount' => $this->amount,
             'type' => $this->type,
-            'photo' => $photo??null
+            'photo' => $this->photo
         ]);
 
         session()->flash('message', 'Registro criado com sucesso!');
