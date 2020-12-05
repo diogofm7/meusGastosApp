@@ -61,12 +61,14 @@
             @enderror
             </p>
 
-            <p class="w-full px-3 mb-6 md:mb-0 md:mt-3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="expenseDate">Data do Comprovante</label>
-                <input type="text" id="expenseDate" name="expenseDate"
-                       class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                       value="{{ $expense->expense_date->format('d/m/Y H:i:s') }}" disabled>
-            </p>
+            @if ($expense->expense_date)
+                <p class="w-full px-3 mb-6 md:mb-0 md:mt-3">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1" for="expenseDate">Data do Comprovante</label>
+                    <input type="text" id="expenseDate" name="expenseDate"
+                           class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                           value="{{ $expense->expense_date->format('d/m/Y H:i:s') }}" disabled>
+                </p>
+            @endif
 
         </div>
         <div class="w-full py-4 px-3 mb-6 md:mb-0">
