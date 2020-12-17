@@ -21,6 +21,11 @@ use App\Http\Livewire\Expense\{
     ExpenseEdit
 };
 
+use App\Http\Livewire\Plan\{
+    PlanList,
+    PlanCreate
+};
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -50,5 +55,13 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         })->name('photo');
 
     });
+
+    Route::prefix('plans')->name('plans.')->group(function () {
+
+        Route::get('/', PlanList::class)->name('index');
+        Route::get('create', PlanCreate::class)->name('create');
+
+    });
+
 
 });

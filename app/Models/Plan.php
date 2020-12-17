@@ -13,6 +13,16 @@ class Plan extends Model
         'name', 'description', 'slug', 'reference', 'price'
     ];
 
+    public function setPriceAttribute($price)
+    {
+        return $this->attributes['price'] = $price * 100;
+    }
+
+    public function getPriceAttribute()
+    {
+        return $this->attributes['price'] / 100;
+    }
+
     public function features()
     {
         return $this->hasMany(Feature::class);

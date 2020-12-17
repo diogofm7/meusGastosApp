@@ -1,11 +1,8 @@
 <div class="max-w-7xl mx-auto py-15 px-4">
-
-    <x-slot name="header">
-        Meus Registros
-    </x-slot>
+    <x-slot name="header">Planos</x-slot>
 
     <div class="w-full mx-auto text-right mb-4">
-        <a href="{{route('expenses.create')}}" class="flex-shrink-0 bg-green-500 hover:bg-green-700 border-green-700 hover:border-green-900 text-sm border text-white py-2 px-6 rounded">Criar Registro</a>
+        <a href="{{route('plans.create')}}" class="flex-shrink-0 bg-green-500 hover:bg-green-700 border-green-700 hover:border-green-900 text-sm border text-white py-2 px-6 rounded">Criar Plano</a>
     </div>
 
     @include('includes.message')
@@ -21,46 +18,36 @@
                                 #
                             </th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Descrição
+                                Plano
                             </th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Valor
                             </th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Data Registro
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Ações
+                                Criado Em
                             </th>
                         </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach($expenses as $exp)
+                        <!-- TO-DO: receber planos do componente-->
+
+                        @foreach($plans as $plan)
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">{{$exp->id}}</div>
+                                    <div class="text-sm text-gray-900">{{$plan->id}}</div>
+                                </td>
+
+
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">{{$plan->name}}</div>
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">{{$exp->description}}</div>
-                                </td>
-
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">
-                                        <span class="{{ $exp->type == 1 ? 'text-green-600' : 'text-red-600' }}">R$ {{number_format($exp->amount, 2, ',', '.')}}</span>
-                                    </div>
+                                    <div class="text-sm text-gray-900">{{$plan->price}}</div>
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    {{$exp->expense_date ?
-                                        $exp->expense_date->format('d/m/Y H:i:s') :
-                                        $exp->created_at->format('d/m/Y H:i:s')}}
-                                </td>
-
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <a href="{{route('expenses.edit', $exp->id)}}" class="px-4 py-2 border rounded bg-teal-700 hover:bg-teal-900 text-white">Editar</a>
-                                    <a href="#" wire:click.prevent="remove({{$exp->id}})"
-                                       class="px-4 py-2 border rounded bg-red-500 text-white">Remover</a>
+                                    {{$plan->created_at->format('d/m/Y H:i:s')}}
                                 </td>
                             </tr>
                         @endforeach
@@ -69,9 +56,5 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="w-full mx-auto mt-10">
-        {{$expenses->links()}}
     </div>
 </div>
