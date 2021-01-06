@@ -26,6 +26,10 @@ use App\Http\Livewire\Plan\{
     PlanCreate
 };
 
+use App\Http\Livewire\Payment\{
+    CreditCard
+};
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -63,5 +67,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     });
 
-
 });
+
+Route::get('subscription', CreditCard::class)->name('plan.subscription');
