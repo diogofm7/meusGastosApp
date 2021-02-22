@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Payment;
 
+use App\Services\PagSeguro\Credentials;
 use App\Services\PagSeguro\Subscription\SubscriptionService;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
@@ -16,9 +17,7 @@ class CreditCard extends Component
 
     public function mount()
     {
-        $email = config('pagseguro.email');
-        $token = config('pagseguro.token');
-        $url = 'https://ws.sandbox.pagseguro.uol.com.br/sessions/?email='.$email.'&token='.$token;
+        $url = Credentials::getCredentials('/sessions');
 
         $response = Http::post($url);
         $response = simplexml_load_string($response->body());
@@ -28,7 +27,7 @@ class CreditCard extends Component
 
     public function proccessSubscription($data)
     {
-        $data['plan_reference'] = '42E1F22C707028033422FF9639F5F96B';
+        $data['plan_reference'] = '6DF524F1C3C3885554DC0F8B55855C9A';
         $makeSubscription = (new SubscriptionService($data))->makeSubscription();
 
         dd($makeSubscription);

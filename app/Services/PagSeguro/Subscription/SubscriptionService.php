@@ -3,6 +3,7 @@
 
 namespace App\Services\PagSeguro\Subscription;
 
+use App\Services\PagSeguro\Credentials;
 use Illuminate\Support\Facades\Http;
 
 class SubscriptionService
@@ -16,10 +17,7 @@ class SubscriptionService
 
     public function makeSubscription()
     {
-        $email = config('pagseguro.email');
-        $token = config('pagseguro.token');
-
-        $url = "https://ws.sandbox.pagseguro.uol.com.br/pre-approvals?email={$email}&token={$token}";
+        $url = Credentials::getCredentials('/pre-approvals');
 
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
