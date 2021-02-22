@@ -1,4 +1,4 @@
-<div class="max-w-7xl mx-auto py-15 px-4" x-data="creditCard()" x-init="PagSeguroDirectPayment.setSessionId('{{ $sessionId }}')">
+<div class="max-w-7xl mx-auto py-15 px-4" x-data="creditCard()"  x-init="PagSeguroDirectPayment.setSessionId('{{ $sessionId }}')">
 
     @include('includes.message')
 
@@ -15,7 +15,7 @@
 
             <p class="w-full px-3 mb-6">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Número Cartão</label>
-                <input @keyup="keyUpInput" type="text" name="card_number" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                <input @keyup="getBrand" type="text" name="card_number" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
             </p>
 
             <p class="w-full px-3 mb-6">
@@ -47,7 +47,7 @@
             </p>
 
             <p class="w-full py-4 px-3 mb-6">
-                <button @click.prevent="clickButton" type="submit" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded">Realizar Assinatura</button>
+                <button @click.prevent="cardToken" type="submit" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded">Realizar Assinatura</button>
             </p>
 
         </div>
@@ -57,7 +57,6 @@
     <script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
     <script>
         /*
-            TODO - Recuperar Bandeira do Cartão
             TODO - Recuperar o Token do Cartão
             TODO - Enviar Token e Sender hash para o componente PHP
          */
@@ -65,11 +64,21 @@
 
         function creditCard() {
             return {
-                keyUpInput (e) {
-                    console.log(e.target.value);
+                brandName: '',
+                getBrand (e) {
+                    let cardNumber = e.target.value;
+                    if(cardNumber.length == 6) {
+                        PagSeguroDirectPayment.getBrand({
+                            cardBin: cardNumber,
+                            success: (response) => {
+                                //bandeira encontrada
+                                this.brandName = response.brand.name;
+                            }
+                        });
+                    }
                 },
-                clickButton () {
-                    alert('Ok Button');
+                cardToken (e) {
+                    console.log(this.brandName);
                 }
             }
         }
