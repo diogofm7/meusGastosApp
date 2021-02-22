@@ -56,12 +56,6 @@
 
     <script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
     <script>
-        /*
-            TODO - Recuperar o Token do Cartão
-            TODO - Enviar Token e Sender hash para o componente PHP
-         */
-
-
         function creditCard() {
             return {
                 brandName: '',

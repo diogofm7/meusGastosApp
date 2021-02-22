@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Payment;
 
+use App\Services\PagSeguro\Subscription\SubscriptionService;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 
@@ -27,7 +28,10 @@ class CreditCard extends Component
 
     public function proccessSubscription($data)
     {
-        dd($data);
+        $data['plan_reference'] = '42E1F22C707028033422FF9639F5F96B';
+        $makeSubscription = (new SubscriptionService($data))->makeSubscription();
+
+        dd($makeSubscription);
     }
 
     public function render()
