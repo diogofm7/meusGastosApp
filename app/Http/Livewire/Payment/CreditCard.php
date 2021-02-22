@@ -8,6 +8,7 @@ class CreditCard extends Component
 {
     public function render()
     {
-        return view('livewire.payment.credit-card');
+        return view('livewire.payment.credit-card')
+            ->layout('layouts.front');
     }
 }
