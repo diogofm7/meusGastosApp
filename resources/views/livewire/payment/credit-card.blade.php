@@ -1,4 +1,4 @@
-<div class="max-w-7xl mx-auto py-15 px-4" x-data="creditCard()">
+<div class="max-w-7xl mx-auto py-15 px-4" x-data="creditCard()" x-init="PagSeguroDirectPayment.setSessionId('{{ $sessionId }}')">
 
     @include('includes.message')
 
@@ -54,7 +54,15 @@
 
     </form>
 
+    <script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"></script>
     <script>
+        /*
+            TODO - Recuperar Bandeira do Cartão
+            TODO - Recuperar o Token do Cartão
+            TODO - Enviar Token e Sender hash para o componente PHP
+         */
+
+
         function creditCard() {
             return {
                 keyUpInput (e) {
