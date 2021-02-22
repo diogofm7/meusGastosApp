@@ -94,7 +94,7 @@
                                 'token': response.card.token,
                                 'senderHash': PagSeguroDirectPayment.getSenderHash()
                             };
-                            console.log(payload);
+                            Livewire.emit('paymentData', payload);
                         }
                     });
                 }

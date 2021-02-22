@@ -9,6 +9,10 @@ class CreditCard extends Component
 {
     public $sessionId;
 
+    protected $listeners = [
+        'paymentData' => 'proccessSubscription'
+    ];
+
     public function mount()
     {
         $email = config('pagseguro.email');
@@ -19,6 +23,11 @@ class CreditCard extends Component
         $response = simplexml_load_string($response->body());
 
         $this->sessionId = (string) $response->id;
+    }
+
+    public function proccessSubscription($data)
+    {
+        dd($data);
     }
 
     public function render()
