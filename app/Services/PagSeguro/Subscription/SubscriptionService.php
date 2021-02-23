@@ -83,6 +83,9 @@ class SubscriptionService
             ]
         ]);
 
-        return $response->json();
+        $response = (new SubscriptionReaderService())
+                                ->getSubscriptionByCode($response->json()['code']);
+
+        return $response;
     }
 }

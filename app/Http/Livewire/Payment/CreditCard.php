@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Payment;
 
+use App\Models\User;
 use App\Services\PagSeguro\Credentials;
 use App\Services\PagSeguro\Subscription\SubscriptionService;
 use Illuminate\Support\Facades\Http;
@@ -30,7 +31,15 @@ class CreditCard extends Component
         $data['plan_reference'] = '6DF524F1C3C3885554DC0F8B55855C9A';
         $makeSubscription = (new SubscriptionService($data))->makeSubscription();
 
-        dd($makeSubscription);
+        $user = User::find(1);
+        $user->plan()->create([
+            'plan_id' => 4,
+            'status' => $makeSubscription['status'],
+            'date_subscription' => (\DateTime::createFromFormat(DATE_ATOM, $makeSubscription['date']))->format('Y-m-d H:i:s'),
+            'reference_transaction' => $makeSubscription['code']
+        ]);
+
+        session()->flash('message', 'Plano Aderido com Sucesso!');
     }
 
     public function render()
