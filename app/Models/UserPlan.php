@@ -9,8 +9,10 @@ class UserPlan extends Model
 {
     use HasFactory;
 
+    protected $table = 'user_plan';
+
     protected $fillable = [
-        'plan_id', 'reference_transaction'
+        'plan_id', 'reference_transaction', 'status', 'date_subscription'
     ];
 
     public function user()
